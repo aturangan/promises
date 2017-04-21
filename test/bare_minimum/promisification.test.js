@@ -28,6 +28,7 @@ describe('Promisification', function() {
         login: 'someRealUser',
         repoCount: 25,
         stargazers: 100
+
       });
 
       getGitHubProfileAsync('someRealUser')
