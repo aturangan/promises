@@ -8,6 +8,7 @@
  * HINT: We exported some similar promise-returning functions in previous exercises
  */
 
+
 var fs = require('fs');
 var Promise = require('bluebird');
 
@@ -20,8 +21,8 @@ var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
     .then(getGitHubProfileAsync)
     .then(function(profile) {
       return writeFileAsync(writeFilePath, JSON.stringify(profile));
-    });
-  };
+    })
+};
 
 // Export these functions so we can test them
 module.exports = {

@@ -4,34 +4,36 @@
  * to the function invocation, while errors should be available in the `catch` block
  */
 
+
+
 var fs = require('fs');
 var request = require('request');
 var Promise = require('bluebird');
 
 // This function should retrieve the first line of the file at `filePath`
 var pluckFirstLineFromFileAsync = function(filePath) {
-  return new Promise(function(fulfill, reject) {
-    fs.readFile(filePath, 'utf8', function(err, data) {
-      if (err) {
-        reject (err);
+  return new Promise(function(resolve, reject) {
+    fs.readFile(filePath, 'utf8', function(error, data) {
+      if (error) {
+        reject(error);
       } else {
-        fulfill(data.split('\n')[0]);
+        resolve(data.split('\n')[0]);
       }
-    });
-  });
-};
+    })
+  })
+}
 
 // This function should retrieve the status code of a GET request to `url`
 var getStatusCodeAsync = function(url) {
-  return new Promise(function(fulfill, reject) {
-    request.get(url, function(err, response, body) {
-      if (err) {
-        reject (err)
+  return new Promise(function(resolve, reject) {
+    request.get(url, function(error, data) {
+      if (error) {
+        reject(error);
       } else {
-        fulfill(response.statusCode);
+        resolve(data.statusCode);
       }
-    });
-  });
+    })
+  })
 };
 
 // Export these functions so we can test them and reuse them in later exercises
@@ -39,3 +41,71 @@ module.exports = {
   getStatusCodeAsync: getStatusCodeAsync,
   pluckFirstLineFromFileAsync: pluckFirstLineFromFileAsync
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var fs = require('fs');
+// var request = require('request');
+// var Promise = require('bluebird');
+
+// // This function should retrieve the first line of the file at `filePath`
+// var pluckFirstLineFromFileAsync = function(filePath) {
+//   return new Promise(function(fulfill, reject) {
+//     fs.readFile(filePath, 'utf8', function(err, data) {
+//       if (err) {
+//         reject (err);
+//       } else {
+//         fulfill(data.split('\n')[0]);
+//       }
+//     });
+//   });
+// };
+
+// // This function should retrieve the status code of a GET request to `url`
+// var getStatusCodeAsync = function(url) {
+//   return new Promise(function(fulfill, reject) {
+//     request.get(url, function(err, response, body) {
+//       if (err) {
+//         reject (err)
+//       } else {
+//         fulfill(response.statusCode);
+//       }
+//     });
+//   });
+// };
+
+// // Export these functions so we can test them and reuse them in later exercises
+// module.exports = {
+//   getStatusCodeAsync: getStatusCodeAsync,
+//   pluckFirstLineFromFileAsync: pluckFirstLineFromFileAsync
+// };
